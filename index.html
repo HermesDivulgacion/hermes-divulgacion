@@ -558,16 +558,98 @@
       margin-bottom: 1.25rem;
     }
 
-    /* 4. CATÁLOGO DE TALLERES (TABS + FICHAS ORDENADAS) */
-    .filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-bottom: 2.25rem;
-      padding: 0.5rem;
-      background: rgba(15, 23, 42, 0.75);
+    /* 4. CATÁLOGO DE TALLERES (4 BOTONES DE EJES TEMÁTICOS) */
+    .filter-bar-ejes {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+      padding: 0.85rem;
+      background: rgba(15, 23, 42, 0.85);
       border: 1px solid var(--border-subtle);
-      border-radius: 1rem;
+      border-radius: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .filter-bar-ejes {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .filter-bar-ejes {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .filter-bar-ejes .filter-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.45rem;
+      padding: 1rem 1.15rem;
+      border-radius: 0.95rem;
+      background: rgba(22, 31, 48, 0.7);
+      border: 1px solid rgba(56, 189, 248, 0.15);
+      color: #CBD5E1;
+      text-align: left;
+      font-size: 0.92rem;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .filter-bar-ejes .filter-btn:hover {
+      background: rgba(30, 41, 59, 0.9);
+      border-color: rgba(56, 189, 248, 0.4);
+      color: #FFFFFF;
+      transform: translateY(-2px);
+    }
+
+    .filter-bar-ejes .filter-btn.active {
+      background: linear-gradient(145deg, rgba(56, 189, 248, 0.2) 0%, rgba(129, 140, 248, 0.2) 100%);
+      border-color: var(--accent-cyan);
+      color: #FFFFFF;
+      box-shadow: 0 0 25px -5px rgba(56, 189, 248, 0.35);
+    }
+
+    .eje-pill-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.2rem 0.55rem;
+      border-radius: 0.45rem;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .filter-bar-ejes .filter-btn.active .eje-pill-badge {
+      background: var(--accent-cyan);
+      color: #0B0F19;
+      border-color: var(--accent-cyan);
+    }
+
+    .eje-btn-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      line-height: 1.25;
+      color: #FFFFFF;
+    }
+
+    .eje-btn-meta {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .filter-bar-ejes .filter-btn.active .eje-btn-meta {
+      color: #E2E8F0;
     }
 
     .filter-btn {
@@ -1219,7 +1301,7 @@
         <div class="section-header-split">
           <div>
             <div class="eyebrow-badge">02 · Portafolio Académico y Experimental</div>
-            <h2 class="section-title">Catálogo Interactivo de Talleres</h2>
+            <h2 class="section-title">Catálogo de Talleres</h2>
             <p class="section-subtitle">
               Selecciona un eje temático para filtrar nuestras 20 experiencias. Cada tarjeta especifica el concepto
               científico y el entregable o actividad práctica.
@@ -1229,28 +1311,49 @@
 
         </div>
 
-        <!-- Barra de Filtros Interactivos -->
-        <div class="filter-bar" role="tablist" aria-label="Filtrar talleres por categoría">
-          <button type="button" class="filter-btn active" data-filter="all">
-            <span>Todos</span>
-            <span class="filter-count">20</span>
+        <!-- 4 Botones de Ejes Temáticos (Llevan a la lista de cada eje) -->
+        <div class="filter-bar-ejes" role="tablist" aria-label="Ejes temáticos de talleres">
+          
+          <!-- Eje 1 -->
+          <button type="button" class="filter-btn active" data-filter="astro-arte" role="tab" aria-selected="true">
+            <span class="eje-pill-badge">Eje 1</span>
+            <span class="eje-btn-title">Astro-Arte y Planetarias</span>
+            <span class="eje-btn-meta">
+              <svg class="icon-svg" style="width:14px; height:14px; color:var(--accent-cyan);" viewBox="0 0 24 24"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+              <span>6 talleres prácticos</span>
+            </span>
           </button>
-          <button type="button" class="filter-btn" data-filter="astro-arte">
-            <span>Eje 1: Astro-Arte</span>
-            <span class="filter-count">6</span>
+
+          <!-- Eje 2 -->
+          <button type="button" class="filter-btn" data-filter="optica" role="tab" aria-selected="false">
+            <span class="eje-pill-badge">Eje 2</span>
+            <span class="eje-btn-title">Óptica e Instrumentación</span>
+            <span class="eje-btn-meta">
+              <svg class="icon-svg" style="width:14px; height:14px; color:var(--accent-cyan);" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+              <span>4 talleres prácticos</span>
+            </span>
           </button>
-          <button type="button" class="filter-btn" data-filter="optica">
-            <span>Eje 2: Óptica y Luz</span>
-            <span class="filter-count">4</span>
+
+          <!-- Eje 3 -->
+          <button type="button" class="filter-btn" data-filter="astrofisica" role="tab" aria-selected="false">
+            <span class="eje-pill-badge">Eje 3</span>
+            <span class="eje-btn-title">Astrofísica y Espacio</span>
+            <span class="eje-btn-meta">
+              <svg class="icon-svg" style="width:14px; height:14px; color:var(--accent-cyan);" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+              <span>8 talleres prácticos</span>
+            </span>
           </button>
-          <button type="button" class="filter-btn" data-filter="astrofisica">
-            <span>Eje 3: Astrofísica y Espacio</span>
-            <span class="filter-count">8</span>
+
+          <!-- Eje 4 -->
+          <button type="button" class="filter-btn" data-filter="observacion" role="tab" aria-selected="false">
+            <span class="eje-pill-badge">Eje 4</span>
+            <span class="eje-btn-title">Observación e Inmersivas</span>
+            <span class="eje-btn-meta">
+              <svg class="icon-svg" style="width:14px; height:14px; color:var(--accent-cyan);" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/></svg>
+              <span>2 talleres prácticos</span>
+            </span>
           </button>
-          <button type="button" class="filter-btn" data-filter="observacion">
-            <span>Eje 4: Observación e Inmersivas</span>
-            <span class="filter-count">2</span>
-          </button>
+
         </div>
 
         <!-- Grilla Ordenada de 20 Talleres -->
@@ -1269,7 +1372,7 @@
               </p>
             </div>
             <div class="workshop-deliverable-box">
-              <span class="workshop-label violet">Dinámica / Entregable</span>
+              <span class="workshop-label violet">Dinámica</span>
               <p class="workshop-text" style="margin-bottom:0;">Pintura guiada en acrílico sobre lienzo; cada
                 participante crea su propia Luna con técnica de claroscuro.</p>
             </div>
@@ -1286,7 +1389,7 @@
               <p class="workshop-text">Rotación galáctica, ondas de densidad, bulbo central y formación estelar.</p>
             </div>
             <div class="workshop-deliverable-box">
-              <span class="workshop-label violet">Dinámica / Entregable</span>
+              <span class="workshop-label violet">Dinámica</span>
               <p class="workshop-text" style="margin-bottom:0;">Lienzo individual inspirado en observaciones del
                 Telescopio James Webb (JWST) y datos astrofísicos.</p>
             </div>
@@ -1303,7 +1406,7 @@
               <p class="workshop-text">Morfología y tipos de galaxias (espirales, elípticas, irregulares).</p>
             </div>
             <div class="workshop-deliverable-box">
-              <span class="workshop-label violet">Dinámica / Entregable</span>
+              <span class="workshop-label violet">Dinámica</span>
               <p class="workshop-text" style="margin-bottom:0;">Manualidad con filtros de café y tinturas
                 cromatográficas para mural colectivo o recuerdo individual.</p>
             </div>
@@ -1320,7 +1423,7 @@
               <p class="workshop-text">Medio interestelar, gas ionizado, nubes moleculares y polvo cósmico.</p>
             </div>
             <div class="workshop-deliverable-box">
-              <span class="workshop-label violet">Dinámica / Entregable</span>
+              <span class="workshop-label violet">Dinámica</span>
               <p class="workshop-text" style="margin-bottom:0;">Modelo tridimensional a escala en frasco de vidrio
                 combinando anilinas, densidades y algodón.</p>
             </div>
@@ -1337,7 +1440,7 @@
               <p class="workshop-text">Geología lunar, rotación sincrónica (cara oculta) y desmitificación popular.</p>
             </div>
             <div class="workshop-deliverable-box">
-              <span class="workshop-label violet">Dinámica / Entregable</span>
+              <span class="workshop-label violet">Dinámica</span>
               <p class="workshop-text" style="margin-bottom:0;">Modelado escultórico en arcilla de la Luna para llevar a
                 casa.</p>
             </div>
@@ -1354,7 +1457,7 @@
               <p class="workshop-text">Tiempo geológico, procesos de fosilización y evolución biológica terrestre.</p>
             </div>
             <div class="workshop-deliverable-box">
-              <span class="workshop-label violet">Dinámica / Entregable</span>
+              <span class="workshop-label violet">Dinámica</span>
               <p class="workshop-text" style="margin-bottom:0;">Creación de réplicas fósiles manuales simulando el
                 trabajo de paleontólogos.</p>
             </div>
@@ -1373,7 +1476,7 @@
               </p>
             </div>
             <div class="workshop-deliverable-box">
-              <span class="workshop-label violet">Dinámica / Entregable</span>
+              <span class="workshop-label violet">Dinámica</span>
               <p class="workshop-text" style="margin-bottom:0;">Construcción y calibración individual de un catalejo
                 refractor funcional.</p>
             </div>
@@ -1391,7 +1494,7 @@
               </p>
             </div>
             <div class="workshop-deliverable-box">
-              <span class="workshop-label violet">Dinámica / Entregable</span>
+              <span class="workshop-label violet">Dinámica</span>
               <p class="workshop-text" style="margin-bottom:0;">Construcción de una cámara estenopeica portátil de
                 proyección invertida.</p>
             </div>
@@ -1408,7 +1511,7 @@
               <p class="workshop-text">Reflexión interna, óptica ondulatoria y transmisión de audio sobre luz.</p>
             </div>
             <div class="workshop-deliverable-box">
-              <span class="workshop-label violet">Dinámica / Entregable</span>
+              <span class="workshop-label violet">Dinámica</span>
               <p class="workshop-text" style="margin-bottom:0;">Armado de proyector holográfico piramidal y demostración
                 de modulación óptica.</p>
             </div>
@@ -1425,7 +1528,7 @@
               <p class="workshop-text">Escalas del universo y comparación microscopio vs. telescopio.</p>
             </div>
             <div class="workshop-deliverable-box">
-              <span class="workshop-label violet">Dinámica / Entregable</span>
+              <span class="workshop-label violet">Dinámica</span>
               <p class="workshop-text" style="margin-bottom:0;">Práctica de microscopía con muestras biológicas y
                 contraste de hipótesis visuales.</p>
             </div>
@@ -1444,7 +1547,7 @@
                 aeroespacial.</p>
             </div>
             <div class="workshop-deliverable-box">
-              <span class="workshop-label violet">Dinámica / Entregable</span>
+              <span class="workshop-label violet">Dinámica</span>
               <p class="workshop-text" style="margin-bottom:0;">Construcción y campaña de lanzamientos al aire libre de
                 cohetes hidroneumáticos presurizados.</p>
             </div>
@@ -1462,7 +1565,7 @@
                 nebulosas.</p>
             </div>
             <div class="workshop-deliverable-box">
-              <span class="workshop-label violet">Dinámica / Entregable</span>
+              <span class="workshop-label violet">Dinámica</span>
               <p class="workshop-text" style="margin-bottom:0;">Laboratorio experimental seguro con reactivos
                 cotidianos.</p>
             </div>
@@ -1480,7 +1583,7 @@
                 Solar.</p>
             </div>
             <div class="workshop-deliverable-box">
-              <span class="workshop-label violet">Dinámica / Entregable</span>
+              <span class="workshop-label violet">Dinámica</span>
               <p class="workshop-text" style="margin-bottom:0;">Modelado volumétrico de planetas extrasolares adaptando
                 variables atmosféricas.</p>
             </div>
@@ -1498,7 +1601,7 @@
               </p>
             </div>
             <div class="workshop-deliverable-box">
-              <span class="workshop-label violet">Dinámica / Entregable</span>
+              <span class="workshop-label violet">Dinámica</span>
               <p class="workshop-text" style="margin-bottom:0;">Taller práctico de datación relativa por superposición
                 de cráteres lunares.</p>
             </div>
@@ -1515,7 +1618,7 @@
               <p class="workshop-text">Momento de inercia y conservación de momento angular en discos galácticos.</p>
             </div>
             <div class="workshop-deliverable-box">
-              <span class="workshop-label violet">Dinámica / Entregable</span>
+              <span class="workshop-label violet">Dinámica</span>
               <p class="workshop-text" style="margin-bottom:0;">Construcción de trompos y giroscopios calibrados con
                 material reciclado.</p>
             </div>
@@ -1532,7 +1635,7 @@
               <p class="workshop-text">Radiación térmica, temperatura y espectro estelar.</p>
             </div>
             <div class="workshop-deliverable-box">
-              <span class="workshop-label violet">Dinámica / Entregable</span>
+              <span class="workshop-label violet">Dinámica</span>
               <p class="workshop-text" style="margin-bottom:0;">Juego de rol astronómico con tarjetas reales sobre el
                 Diagrama Hertzsprung-Russell.</p>
             </div>
@@ -1549,7 +1652,7 @@
               <p class="workshop-text">Termodinámica atmosférica, microfísica y predicción local del clima.</p>
             </div>
             <div class="workshop-deliverable-box">
-              <span class="workshop-label violet">Dinámica / Entregable</span>
+              <span class="workshop-label violet">Dinámica</span>
               <p class="workshop-text" style="margin-bottom:0;">Salida de campo de observación diurna con cartas
                 meteorológicas.</p>
             </div>
@@ -1566,7 +1669,7 @@
               <p class="workshop-text">Curvatura del espacio-tiempo, dilatación temporal y paradoja de gemelos.</p>
             </div>
             <div class="workshop-deliverable-box">
-              <span class="workshop-label violet">Dinámica / Entregable</span>
+              <span class="workshop-label violet">Dinámica</span>
               <p class="workshop-text" style="margin-bottom:0;">Demostraciones sobre mallas elásticas y pozos
                 gravitacionales.</p>
             </div>
@@ -1804,40 +1907,40 @@
             </div>
           </article>
 
-          <!-- Perfil 4: David Bernal -->
+          <!-- Perfil 4: Alexander González (Ubicado después de Carlos Mario) -->
           <article class="card-glass team-card">
             <div class="team-avatar-ring">
-              <img src="assets/img/equipo/David%20Bernal.png"
-                onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=David+Bernal&background=161F30&color=818CF8&size=200&bold=true';"
-                alt="David Bernal" class="team-avatar-img" loading="lazy" />
+              <img src="assets/img/equipo/Alexander%20Gonzalez%20T.jpg"
+                onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Alexander+Gonzalez&background=161F30&color=818CF8&size=200&bold=true';"
+                alt="Alexander González" class="team-avatar-img" loading="lazy" />
             </div>
-            <h3 style="font-size:1.15rem; font-weight:700; color:#FFFFFF;">David Bernal</h3>
+            <h3 style="font-size:1.15rem; font-weight:700; color:#FFFFFF;">Alexander González</h3>
             <span
               style="font-size:0.8rem; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:var(--accent-violet); margin:0.35rem 0 0.85rem; display:block;">
               Divulgador
             </span>
             <div style="margin-top:auto; width:100%; display:flex; justify-content:center;">
               <span class="team-affiliation-badge violet">
-                Estudiante de Física<br><strong style="color:#818CF8; font-weight:600;">UdeA</strong>
+                Estudiante de PhD en Astronomía<br><strong style="color:#818CF8; font-weight:600;">U. de La Serena · Chile</strong>
               </span>
             </div>
           </article>
 
-          <!-- Perfil 5: Sara Rodríguez -->
+          <!-- Perfil 5: David Bernal -->
           <article class="card-glass team-card">
             <div class="team-avatar-ring">
-              <img src="assets/img/equipo/SARA%20RODRIGUEZ%20MURILLO.jpeg"
-                onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Sara+Rodriguez&background=161F30&color=38BDF8&size=200&bold=true';"
-                alt="Sara Rodríguez" class="team-avatar-img" loading="lazy" />
+              <img src="assets/img/equipo/David%20Bernal.png"
+                onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=David+Bernal&background=161F30&color=38BDF8&size=200&bold=true';"
+                alt="David Bernal" class="team-avatar-img" loading="lazy" />
             </div>
-            <h3 style="font-size:1.15rem; font-weight:700; color:#FFFFFF;">Sara Rodríguez</h3>
+            <h3 style="font-size:1.15rem; font-weight:700; color:#FFFFFF;">David Bernal</h3>
             <span
               style="font-size:0.8rem; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:var(--accent-cyan); margin:0.35rem 0 0.85rem; display:block;">
-              Divulgadora
+              Divulgador
             </span>
             <div style="margin-top:auto; width:100%; display:flex; justify-content:center;">
               <span class="team-affiliation-badge">
-                Estudiante de Ingeniería Aeroespacial<br><strong style="color:#38BDF8; font-weight:600;">UdeA</strong>
+                Estudiante de Física<br><strong style="color:#38BDF8; font-weight:600;">UdeA</strong>
               </span>
             </div>
           </article>
@@ -1880,43 +1983,41 @@
             </div>
           </article>
 
-          
-
-          <!-- Perfil 9: Carolina Pabón -->
+          <!-- Perfil 8: Carolina Pabón -->
           <article class="card-glass team-card">
             <div class="team-avatar-ring">
               <img src="assets/img/equipo/Carolina%20Pabon%20Rua.jpg"
-                onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Carolina+Pabon&background=161F30&color=38BDF8&size=200&bold=true';"
+                onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Carolina+Pabon&background=161F30&color=818CF8&size=200&bold=true';"
                 alt="Carolina Pabón" class="team-avatar-img" loading="lazy" />
             </div>
             <h3 style="font-size:1.15rem; font-weight:700; color:#FFFFFF;">Carolina Pabón</h3>
-            <span
-              style="font-size:0.8rem; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:var(--accent-cyan); margin:0.35rem 0 0.85rem; display:block;">
-              Divulgadora
-            </span>
-            <div style="margin-top:auto; width:100%; display:flex; justify-content:center;">
-              <span class="team-affiliation-badge">
-                Estudiante de Licenciatura en Física y Matemáticas<br><strong
-                  style="color:#38BDF8; font-weight:600;">UdeA</strong>
-              </span>
-            </div>
-          </article>
-
-           <!-- Perfil 12: Gabriela Mosquera -->
-          <article class="card-glass team-card">
-            <div class="team-avatar-ring">
-              <img src="assets/img/equipo/Gabriela%20Mosquera.jpg"
-                onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Gabriela+Mosquera&background=161F30&color=818CF8&size=200&bold=true';"
-                alt="Gabriela Mosquera" class="team-avatar-img" loading="lazy" />
-            </div>
-            <h3 style="font-size:1.15rem; font-weight:700; color:#FFFFFF;">Gabriela Mosquera</h3>
             <span
               style="font-size:0.8rem; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:var(--accent-violet); margin:0.35rem 0 0.85rem; display:block;">
               Divulgadora
             </span>
             <div style="margin-top:auto; width:100%; display:flex; justify-content:center;">
               <span class="team-affiliation-badge violet">
-                Estudiante de Astronomía<br><strong style="color:#818CF8; font-weight:600;">UdeA</strong>
+                Estudiante de Licenciatura en Física y Matemáticas<br><strong
+                  style="color:#818CF8; font-weight:600;">UdeA</strong>
+              </span>
+            </div>
+          </article>
+
+          <!-- Perfil 9: Gabriela Mosquera -->
+          <article class="card-glass team-card">
+            <div class="team-avatar-ring">
+              <img src="assets/img/equipo/Gabriela%20Mosquera.jpg"
+                onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Gabriela+Mosquera&background=161F30&color=38BDF8&size=200&bold=true';"
+                alt="Gabriela Mosquera" class="team-avatar-img" loading="lazy" />
+            </div>
+            <h3 style="font-size:1.15rem; font-weight:700; color:#FFFFFF;">Gabriela Mosquera</h3>
+            <span
+              style="font-size:0.8rem; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:var(--accent-cyan); margin:0.35rem 0 0.85rem; display:block;">
+              Divulgadora
+            </span>
+            <div style="margin-top:auto; width:100%; display:flex; justify-content:center;">
+              <span class="team-affiliation-badge">
+                Estudiante de Astronomía<br><strong style="color:#38BDF8; font-weight:600;">UdeA</strong>
               </span>
             </div>
           </article>
@@ -1959,10 +2060,7 @@
             </div>
           </article>
 
-         
-
-
-          <!-- Perfil 8: Jonathan Jiménez -->
+          <!-- Perfil 12: Jonathan Jiménez -->
           <article class="card-glass team-card">
             <div class="team-avatar-ring">
               <img src="assets/img/equipo/JONATHAN%20DAVID%20JIMENEZ%20PRECIADO.png"
@@ -1977,6 +2075,25 @@
             <div style="margin-top:auto; width:100%; display:flex; justify-content:center;">
               <span class="team-affiliation-badge violet">
                 Estudiante de Astronomía<br><strong style="color:#818CF8; font-weight:600;">UdeA</strong>
+              </span>
+            </div>
+          </article>
+
+          <!-- Perfil 13: Sara Rodríguez (Ubicada después de Jonathan Jiménez) -->
+          <article class="card-glass team-card">
+            <div class="team-avatar-ring">
+              <img src="assets/img/equipo/SARA%20RODRIGUEZ%20MURILLO.jpeg"
+                onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Sara+Rodriguez&background=161F30&color=38BDF8&size=200&bold=true';"
+                alt="Sara Rodríguez" class="team-avatar-img" loading="lazy" />
+            </div>
+            <h3 style="font-size:1.15rem; font-weight:700; color:#FFFFFF;">Sara Rodríguez</h3>
+            <span
+              style="font-size:0.8rem; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:var(--accent-cyan); margin:0.35rem 0 0.85rem; display:block;">
+              Divulgadora
+            </span>
+            <div style="margin-top:auto; width:100%; display:flex; justify-content:center;">
+              <span class="team-affiliation-badge">
+                Estudiante de Ingeniería Aeroespacial<br><strong style="color:#38BDF8; font-weight:600;">UdeA</strong>
               </span>
             </div>
           </article>
@@ -2083,9 +2200,21 @@
         });
       });
 
-      // Filtrado Dinámico de Talleres
+      // Filtrado Dinámico de los 4 Ejes de Talleres
       const filterButtons = document.querySelectorAll('.filter-btn');
       const workshopCards = document.querySelectorAll('.workshop-card');
+      const workshopsGrid = document.getElementById('workshops-grid');
+
+      function filterWorkshops(filterCategory) {
+        workshopCards.forEach(function (card) {
+          const category = card.getAttribute('data-category');
+          if (category === filterCategory) {
+            card.classList.remove('hidden-item');
+          } else {
+            card.classList.add('hidden-item');
+          }
+        });
+      }
 
       filterButtons.forEach(function (btn) {
         btn.addEventListener('click', function () {
@@ -2093,19 +2222,24 @@
 
           filterButtons.forEach(function (b) {
             b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
           });
           btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
 
-          workshopCards.forEach(function (card) {
-            const category = card.getAttribute('data-category');
-            if (filter === 'all' || category === filter) {
-              card.classList.remove('hidden-item');
-            } else {
-              card.classList.add('hidden-item');
-            }
-          });
+          filterWorkshops(filter);
+
+          // Desplazar suavemente hacia la lista de talleres de ese eje
+          if (workshopsGrid) {
+            const yOffset = -120;
+            const y = workshopsGrid.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }
         });
       });
+
+      // Inicializar mostrando únicamente el Eje 1 (Astro-Arte)
+      filterWorkshops('astro-arte');
 
       // =======================================================================
       // SLIDER DE GALERÍA (1 foto cada 5 segundos, sin texto, controles y puntos)
