@@ -1789,7 +1789,7 @@
           </div>
         </div>
 
-        <!-- Visor Slider Automático (1 foto a la vez, cambia cada 5 segundos) -->
+        <!-- Visor Slider Automático (1 foto a la vez, cambia cada 3 segundos) -->
         <div class="slider-container" id="galeria-slider" aria-roledescription="carousel"
           aria-label="Galería de fotos de Hermes">
 
@@ -1801,12 +1801,8 @@
               </svg>
             </button>
 
-            <!-- 14 Diapositivas sin nombres de actividades -->
+            <!-- 16 Diapositivas sin nombres de actividades -->
             <div class="slide-item active">
-              <img src="assets/img/galeria/WhatsApp%20Image%202026-11-07%20at%2016.23.45%20(1).jpeg"
-                alt="Fotografía de experiencia Hermes" class="slide-photo" loading="lazy" />
-            </div>
-            <div class="slide-item">
               <img src="assets/img/galeria/WhatsApp%20Image%202026-11-07%20at%2016.23.45.jpeg"
                 alt="Fotografía de experiencia Hermes" class="slide-photo" loading="lazy" />
             </div>
@@ -1824,10 +1820,6 @@
             </div>
             <div class="slide-item">
               <img src="assets/img/galeria/WhatsApp%20Image%202026-11-07%20at%2016.23.46%20(4).jpeg"
-                alt="Fotografía de experiencia Hermes" class="slide-photo" loading="lazy" />
-            </div>
-            <div class="slide-item">
-              <img src="assets/img/galeria/WhatsApp%20Image%202026-11-07%20at%2016.23.46%20(5).jpeg"
                 alt="Fotografía de experiencia Hermes" class="slide-photo" loading="lazy" />
             </div>
             <div class="slide-item">
@@ -1858,7 +1850,22 @@
               <img src="assets/img/galeria/WhatsApp%20Image%202026-11-07%20at%2016.23.46.jpeg"
                 alt="Fotografía de experiencia Hermes" class="slide-photo" loading="lazy" />
             </div>
-
+            <div class="slide-item">
+              <img src="assets/img/galeria/WhatsApp%20Image%202026-11-07%20at%206.42.26%20PM.jpeg"
+                alt="Fotografía de experiencia Hermes" class="slide-photo" loading="lazy" />
+            </div>
+            <div class="slide-item">
+              <img src="assets/img/galeria/WhatsApp%20Image%202026-11-07%20at%206.42.28%20PM%20(1).jpeg"
+                alt="Fotografía de experiencia Hermes" class="slide-photo" loading="lazy" />
+            </div>
+            <div class="slide-item">
+              <img src="assets/img/galeria/WhatsApp%20Image%202026-11-07%20at%206.42.28%20PM%20(2).jpeg"
+                alt="Fotografía de experiencia Hermes" class="slide-photo" loading="lazy" />
+            </div>
+            <div class="slide-item">
+              <img src="assets/img/galeria/WhatsApp%20Image%202026-11-07%20at%206.42.28%20PM%20(3).jpeg"
+                alt="Fotografía de experiencia Hermes" class="slide-photo" loading="lazy" />
+            </div>
 
             <!-- Botón Siguiente -->
             <button type="button" class="slider-nav-btn slider-next" id="slider-next-btn" aria-label="Siguiente foto">
@@ -1871,7 +1878,7 @@
           <!-- Barra de controles inferior (Puntos indicadores + Contador) -->
           <div class="slider-footer">
             <div class="slider-dots" id="slider-dots-container"></div>
-            <span class="slider-counter" id="slider-counter">1 / 14</span>
+            <span class="slider-counter" id="slider-counter">1 / 16</span>
           </div>
 
         </div>
@@ -2481,7 +2488,7 @@
 
         function startTimer() {
           if (!slideInterval && totalSlides > 1) {
-            slideInterval = setInterval(nextSlide, 5000);
+            slideInterval = setInterval(nextSlide, 3000);
           }
         }
 
